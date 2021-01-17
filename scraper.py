@@ -28,7 +28,7 @@ class PyCrawler(object):
         html = self.get_html(url)
         parsed = urlparse(url)
         base = f"{parsed.scheme}://{parsed.netloc}"
-        links = re.findall('''<a\s+(?:[^>]*?\s+)?href="([^"]*)"''', html)
+        links = re.findall('''<a\s+(?:[^>]*?\s+)?href="([^"]*)"''', html) #z tego trzeba wyciągnąć 10 linków
         for i, link in enumerate(links):
             if not urlparse(link).netloc:
                 link_with_base = base + link
