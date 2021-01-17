@@ -2,6 +2,7 @@ import requests
 import re
 from urllib.parse import urlparse
 import os
+import threading
 
 
 class PyCrawler(object):
@@ -56,12 +57,18 @@ class PyCrawler(object):
                 continue
             self.visited.add(link)
             info = self.extract_info(link)
+            print(f"""Link: {link}
+            Description: {info.get('description')}
+            Keywords: {info.get('keywords')}""")
 
-            print(f"""Link: {link}    
-Description: {info.get('description')}    
-Keywords: {info.get('keywords')}    
-            """)
-            self.crawl(link)
+    #def loop(self):
+    #    x = 0
+    #    thread = ["thread1", "thread2", "thread3", "thread4", "thread5", "thread6", "thread7", "thread8", "thread9",
+    #              "thread10"]
+    #    for x in range(9):
+    #        thread[x] = threading.Thread(target=)
+    #        thread[x].start()
+    #        thread[x].join()
 
     def start(self):
         self.crawl(self.starting_url)
