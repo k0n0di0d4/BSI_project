@@ -1,6 +1,8 @@
 # Coded by Yashraj Singh Chouhan
 import socket, threading  # Libraries import
 
+import aes
+
 host = '127.0.0.1'  # LocalHost
 port = 7976  # Choosing unreserved port
 
@@ -10,10 +12,12 @@ server.listen()
 
 clients = []
 nicknames = []
+pwd = "pass"
 
 
 def broadcast(message):  # broadcast function declaration
     for client in clients:
+        #message = aes.AESCipher(pwd).encrypt(message)
         client.send(message)
 
 
@@ -21,6 +25,7 @@ def handle(client):
     while True:
         try:  # recieving valid messages from client
             message = client.recv(1024)
+            #message = aes.AESCipher(pwd).decrypt(message)
             broadcast(message)
         except:  # removing clients
             index = clients.index(client)

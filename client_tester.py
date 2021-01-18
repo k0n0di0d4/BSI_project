@@ -3,7 +3,7 @@ import socket, threading
 import aes
 
 nickname = input("Choose your nickname: ")
-pwd = input("Input password to conversation: ")
+pwd = "pass"
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # socket initialization
 client.connect(('127.0.0.1', 7976))  # connecting client to server
